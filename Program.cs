@@ -6,8 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMvc();
 builder.Services.AddTransient<CourseService>();
 builder.Services.AddFeatureManagement();
-builder.Configuration.AddAzureAppConfiguration(options => { options.Connect("Endpoint=https://appconfigsampleapp.azconfig.io;Id=p+QX;Secret=na8OFwE0rl6fW+y/7jAUK65l8UqkgqbKpJkEBcGekF0=")
-    .UseFeatureFlags()});
+builder.Configuration.AddAzureAppConfiguration(options => {
+    options.Connect("Endpoint=https://appconfigsampleapp.azconfig.io;Id=p+QX;Secret=na8OFwE0rl6fW+y/7jAUK65l8UqkgqbKpJkEBcGekF0=")
+    .UseFeatureFlags();
+});
 var app = builder.Build();
 
 app.UseRouting();
