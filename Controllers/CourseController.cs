@@ -21,7 +21,7 @@ namespace sqlconnectiontest.Controllers
         // The Index method is used to get a list of courses and return it to the view
         public async Task<IActionResult> Index()
         {
-            ViewData["abc"] = await _featureManager.IsEnabledAsync(".appconfig.featureflag/enableFeature"); // _configuration["sampleapp:testkey"];
+            ViewData["abc"] = await _featureManager.IsEnabledAsync("enableFeature"); // _configuration["sampleapp:testkey"];
             IEnumerable<Course> _course_list = _course_service.GetCourses(_configuration.GetConnectionString("SQLConnection"));
             return View(_course_list);
         }
