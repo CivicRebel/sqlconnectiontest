@@ -5,6 +5,8 @@ using sqlconnectiontest.Services;
 
 namespace sqlconnectiontest.Controllers
 {
+    [ApiController]
+    [Route("/api/Course")]
     public class CourseController : Controller
     {
         private readonly CourseService _course_service;
@@ -18,12 +20,12 @@ namespace sqlconnectiontest.Controllers
             _featureManager = featureManager;
         }
 
-        // The Index method is used to get a list of courses and return it to the view
-        public async Task<IActionResult> Index()
+        
+        [HttpGet]
+        [Route("")]
+        public IActionResult GetCourses()
         {
-            ViewData["abc"] = await _featureManager.IsEnabledAsync("enableFeature"); // _configuration["sampleapp:testkey"];
-            IEnumerable<Course> _course_list = _course_service.GetCourses(_configuration.GetConnectionString("SQLConnection"));
-            return View(_course_list);
+            return Ok(_course_service.GetCourses(_configuration.GetConnectionString("SQLConnection")));
         }
     }
 }
